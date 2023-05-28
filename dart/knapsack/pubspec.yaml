@@ -1,4 +1,4 @@
-name: branch_and_bound
+name: knapsack
 description: A simple command-line application.
 version: 1.0.0
 
