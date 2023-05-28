@@ -25,7 +25,6 @@ void main(List<String> arguments) {
     asset: assets[0],
     currentWeight: 0,
     currentValue: 0,
-    upperBound: 0,
   );
 
   print(max);
@@ -35,7 +34,6 @@ void solve({
   required Asset? asset,
   required int currentWeight,
   required int currentValue,
-  required double upperBound,
 }) {
   // If the item to be verified is out of range, return.
   if (asset == null) {
@@ -59,7 +57,7 @@ void solve({
     // the current value in the knapsack +
     // the value of the asset +
     // the remaining space * the asset's value per weight.
-    upperBound = currentValue +
+    final upperBound = currentValue +
         asset.value +
         (remainingWeight - asset.weight) * asset.getValuePerWeight;
 
@@ -74,7 +72,6 @@ void solve({
         asset: indexOf == assets.length - 1 ? null : assets[indexOf + 1],
         currentWeight: currentWeight + asset.weight,
         currentValue: currentValue + asset.value,
-        upperBound: upperBound,
       );
     }
 
@@ -85,7 +82,7 @@ void solve({
   // Define the new upper bound as:
   // the current value in the knapsack +
   // the remaining weight * the asset's value per weight.
-  upperBound = currentValue + remainingWeight * asset.getValuePerWeight;
+  final upperBound = currentValue + remainingWeight * asset.getValuePerWeight;
 
   // If the new upper bound is greater than the global max.
   if (upperBound > max) {
@@ -98,7 +95,6 @@ void solve({
       asset: indexOf == assets.length - 1 ? null : assets[indexOf + 1],
       currentWeight: currentWeight,
       currentValue: currentValue,
-      upperBound: upperBound,
     );
   }
 }
